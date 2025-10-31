@@ -1,29 +1,15 @@
 <p align="center">
-  <a href="https://www.clapgrow.com">
-    <img src="clapgrow.png" alt="Clapgrow logo" height="100" />
-  </a>
 
-  <h3 align="center">Clapgrow: Empowering Growth, One Task at a Time!</h3>
+
+  <h3 align="center">Taskify: Empowering Growth, One Task at a Time!</h3>
   <p align="center">A custom application built on top of the Frappe Framework, a Python-based full-stack web application framework
     <br />
     <br />
     <br />
-    <a href="https://clapgrow.com/"><strong>Learn More »</strong></a>
     <br />
   </p>
 </p>
 
-<p align="center">
-  <a href="https://github.com/clapgrow/clapgrow_app_v2/blob/main/LICENSE">
-    <img alt="license" src="https://img.shields.io/badge/license-Clapgrow_Proprietary-blue">
-  </a>
-  <a href="https://github.com/clapgrow/clapgrow_app_v2/stargazers" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/stars-1-brightgreen" alt="GitHub Stars">
-  </a>
-  <a href="https://github.com/clapgrow/clapgrow_app_v2/pulse" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/commits_15_per_month-blue" alt="Commits per Month">
-  </a>
-</p>
 
 <br>
 Your dream of building a world-class, system driven business that does not require your daily input is now possible! The secret system that Clapgrow makes accessible to small and medium companies is exactly what Fortune 500 companies use to grow successfully. Traditionally, these systems used to cost millions but is now accessible for the price of a few cups of coffee every month. To know how Clapgrow can help your business in just 12 weeks and destroy your competition. 
@@ -55,14 +41,14 @@ Since Clapgrow is a Frappe app, it can be installed via [frappe-bench](https://f
 Once you have [setup your bench](https://frappeframework.com/docs/v14/user/en/installation) and your [site](https://frappeframework.com/docs/v14/user/en/tutorial/install-and-setup-bench), you can install the app via the following commands:
 
 ```bash
-bench get-app https://github.com/{username:password}@clapgrow/clapgrow_app_v2.git
+bench get-app https://github.com/{username:password}@clapgrow/taskify.git
 ```
 
 ```bash
-bench --site <yoursite.name> install-app clapgrow_app
+bench --site <yoursite.name> install-app taskify
 ```
 
-Post this, you can access Clapgrow on your Frappe site at the `/clapgrow` endpoint (e.g. https://yoursite.com/clapgrow).
+Post this, you can access Clapgrow on your Frappe site at the `/taskify` endpoint (e.g. https://yoursite.com/taskify).
 
 ### Local development setup
 
@@ -73,7 +59,7 @@ You also need to disable CSRF (add `ignore_csrf: 1` in your `site_config.json`) 
 You can start the React live web server by:
 
 ```bash
-cd frappe-bench/apps/clapgrow_app
+cd frappe-bench/apps/taskify
 yarn dev
 ```
 
@@ -81,10 +67,10 @@ Your local dev server would be running at `http://localhost:8080`.
 
 ## Reporting Bugs
 
-If you find any bugs, feel free to report them here on [GitHub Issues](https://github.com/clapgrow/clapgrow_app_v2/issues). Make sure you share enough information (app screenshots, browser console screenshots, stack traces, etc) for project maintainers to replicate your bug.
+If you find any bugs, feel free to report them here on [GitHub Issues](https://github.com/.../taskify/issues). Make sure you share enough information (app screenshots, browser console screenshots, stack traces, etc) for project maintainers to replicate your bug.
 
 <hr>
 
 ## License
 
-Clapgrow Proprietary License
+Taskify Proprietary License
