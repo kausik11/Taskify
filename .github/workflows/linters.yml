@@ -110,7 +110,7 @@ jobs:
             **/*.ts
             **/*.tsx
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           node-version: 22.12.0
