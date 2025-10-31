@@ -57,7 +57,7 @@ jobs:
           bandit -r . -f json -o bandit-report.json || true
 
       - name: Upload Security Reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: security-reports
@@ -240,7 +240,7 @@ jobs:
           postman collection run "39478068-7acbe737-b21b-45af-93f2-835053bd9429" || echo "Postman collection not configured yet"
 
       - name: Upload Security & Test Reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: security-test-reports
