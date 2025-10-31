@@ -1,0 +1,203 @@
+{
+  "actions": [],
+  "allow_import": 1,
+  "autoname": "format:{branch_name}-{company_id}",
+  "creation": "2025-08-02 00:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "branch_details_section",
+    "branch_name",
+    "company_id",
+    "column_break_basic",
+    "start_time",
+    "end_time",
+    "section_break_timing",
+    "timeline",
+    "work_duration",
+    "column_break_stats",
+    "total_holidays",
+    "active_holidays",
+    "section_break_holiday_config",
+    "enable_holidays",
+    "auto_generate_weekly_offs",
+    "column_break_config",
+    "default_weekly_off_days",
+    "holiday_color_scheme"
+  ],
+  "fields": [
+    {
+      "fieldname": "branch_details_section",
+      "fieldtype": "Section Break",
+      "label": "Branch Information"
+    },
+    {
+      "fieldname": "branch_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Branch Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "company_id",
+      "fieldtype": "Link",
+      "label": "Company",
+      "options": "CG Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_basic",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "start_time",
+      "fieldtype": "Time",
+      "label": "Start Time",
+      "reqd": 1
+    },
+    {
+      "fieldname": "end_time",
+      "fieldtype": "Time",
+      "label": "End Time",
+      "reqd": 1
+    },
+    {
+      "fieldname": "section_break_timing",
+      "fieldtype": "Section Break",
+      "label": "Work Schedule Summary"
+    },
+    {
+      "fieldname": "timeline",
+      "fieldtype": "Data",
+      "label": "Work Timeline",
+      "read_only": 1
+    },
+    {
+      "fieldname": "work_duration",
+      "fieldtype": "Data",
+      "label": "Work Duration",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_stats",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "total_holidays",
+      "fieldtype": "Int",
+      "label": "Total Holidays",
+      "read_only": 1,
+      "description": "Total holidays configured for this branch"
+    },
+    {
+      "fieldname": "active_holidays",
+      "fieldtype": "Int",
+      "label": "Active Holidays",
+      "read_only": 1,
+      "description": "Currently active holidays"
+    },
+    {
+      "fieldname": "section_break_holiday_config",
+      "fieldtype": "Section Break",
+      "label": "Holiday Configuration"
+    },
+    {
+      "fieldname": "enable_holidays",
+      "fieldtype": "Check",
+      "label": "Enable Holiday Management",
+      "default": 1,
+      "description": "Enable holiday management for this branch"
+    },
+    {
+      "fieldname": "auto_generate_weekly_offs",
+      "fieldtype": "Check",
+      "label": "Auto Generate Weekly Offs",
+      "default": 0,
+      "depends_on": "eval:doc.enable_holidays==1",
+      "description": "Automatically create weekly off holidays"
+    },
+    {
+      "fieldname": "column_break_config",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "default_weekly_off_days",
+      "fieldtype": "Data",
+      "label": "Default Weekly Off Days",
+      "depends_on": "eval:doc.auto_generate_weekly_offs==1",
+      "description": "Comma-separated days (e.g., Sat,Sun)",
+      "default": "Sat,Sun"
+    },
+    {
+      "fieldname": "holiday_color_scheme",
+      "fieldtype": "Select",
+      "label": "Holiday Color Scheme",
+      "options": "Default\nColorful\nMinimal\nProfessional",
+      "default": "Default",
+      "description": "Color scheme for holiday calendar display"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [
+    {
+      "link_doctype": "CG Holiday",
+      "link_fieldname": "branch_id"
+    }
+  ],
+  "modified": "2024-08-17 12:59:58.516458",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "CG Branch",
+  "naming_rule": "Expression",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1,
+      "import": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-ADMIN",
+      "share": 1,
+      "write": 1,
+      "import": 1
+    },
+    {
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-TEAM-LEAD",
+      "share": 1
+    },
+    {
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-MEMBER",
+      "share": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": [],
+  "title_field": "branch_name"
+}

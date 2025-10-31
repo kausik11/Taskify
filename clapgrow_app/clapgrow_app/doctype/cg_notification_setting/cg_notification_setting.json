@@ -1,0 +1,321 @@
+{
+ "actions": [],
+ "autoname": "field:company_id",
+ "creation": "2025-05-16 16:29:23.022446",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "company_id",
+  "ta_on",
+  "ta_wa",
+  "ta_email",
+  "ut_on",
+  "ut_wa",
+  "ut_email",
+  "ut_time",
+  "ot_on",
+  "ot_wa",
+  "ot_email",
+  "sd_on",
+  "sd_wa",
+  "sd_email",
+  "sd_freq",
+  "ws_on",
+  "ws_wa",
+  "ws_email",
+  "ms_on",
+  "ms_wa",
+  "ms_email",
+  "dr_on",
+  "dr_wa",
+  "dr_email",
+  "dr_freq",
+  "rtc_on",
+  "rtc_email",
+  "rtc_wa",
+  "otc_on",
+  "otc_email",
+  "otc_wa",
+  "td_on",
+  "td_email",
+  "td_wa",
+  "pn_on",
+  "pn_email",
+  "pn_wa"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_id",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "CG Company"
+  },
+  {
+   "default": "0",
+   "fieldname": "ta_on",
+   "fieldtype": "Check",
+   "label": "Task Assigned"
+  },
+  {
+   "default": "0",
+   "fieldname": "ta_wa",
+   "fieldtype": "Check",
+   "label": "Task WhatsApp"
+  },
+  {
+   "default": "0",
+   "fieldname": "ta_email",
+   "fieldtype": "Check",
+   "label": "Task Email"
+  },
+  {
+   "default": "0",
+   "fieldname": "ut_on",
+   "fieldtype": "Check",
+   "label": "Upcoming Task"
+  },
+  {
+   "default": "0",
+   "fieldname": "ut_wa",
+   "fieldtype": "Check",
+   "label": "Upcoming WhatsApp"
+  },
+  {
+   "default": "0",
+   "fieldname": "ut_email",
+   "fieldtype": "Check",
+   "label": "Upcoming Email"
+  },
+  {
+   "default": "08:00",
+   "fieldname": "ut_time",
+   "fieldtype": "Select",
+   "label": "Upcoming Time",
+   "options": "08:00\n12:00\n16:00\n20:00"
+  },
+  {
+   "default": "0",
+   "fieldname": "ot_on",
+   "fieldtype": "Check",
+   "label": "Overdue Task"
+  },
+  {
+   "default": "0",
+   "fieldname": "ot_wa",
+   "fieldtype": "Check",
+   "label": "Overdue WhatsApp"
+  },
+  {
+   "default": "0",
+   "fieldname": "ot_email",
+   "fieldtype": "Check",
+   "label": "Overdue Email"
+  },
+  {
+   "default": "0",
+   "fieldname": "sd_on",
+   "fieldtype": "Check",
+   "label": "Summary Digest"
+  },
+  {
+   "default": "0",
+   "fieldname": "sd_wa",
+   "fieldtype": "Check",
+   "label": "Digest WhatsApp"
+  },
+  {
+   "default": "0",
+   "fieldname": "sd_email",
+   "fieldtype": "Check",
+   "label": "Digest Email"
+  },
+  {
+   "default": "Weekly",
+   "fieldname": "sd_freq",
+   "fieldtype": "Select",
+   "label": "Digest Frequency",
+   "options": "Daily\nWeekly\nMonthly"
+  },
+  {
+   "default": "0",
+   "fieldname": "ws_on",
+   "fieldtype": "Check",
+   "label": "Weekly Score"
+  },
+  {
+   "default": "0",
+   "fieldname": "ws_wa",
+   "fieldtype": "Check",
+   "label": "Score WhatsApp"
+  },
+  {
+   "default": "0",
+   "fieldname": "ws_email",
+   "fieldtype": "Check",
+   "label": "Score Email"
+  },
+  {
+   "default": "0",
+   "fieldname": "ms_on",
+   "fieldtype": "Check",
+   "label": "MIS Score"
+  },
+  {
+   "default": "0",
+   "fieldname": "ms_wa",
+   "fieldtype": "Check",
+   "label": "MIS WhatsApp"
+  },
+  {
+   "default": "0",
+   "fieldname": "ms_email",
+   "fieldtype": "Check",
+   "label": "MIS Email"
+  },
+  {
+   "default": "0",
+   "fieldname": "dr_on",
+   "fieldtype": "Check",
+   "label": "Default Reminder"
+  },
+  {
+   "default": "0",
+   "fieldname": "dr_wa",
+   "fieldtype": "Check",
+   "label": "Reminder WhatsApp"
+  },
+  {
+   "default": "0",
+   "fieldname": "dr_email",
+   "fieldtype": "Check",
+   "label": "Reminder Email"
+  },
+  {
+   "default": "Weekly",
+   "fieldname": "dr_freq",
+   "fieldtype": "Select",
+   "label": "Reminder Frequency",
+   "options": "Daily\nWeekly\nMonthly"
+  },
+  {
+   "default": "1",
+   "fieldname": "rtc_on",
+   "fieldtype": "Check",
+   "label": "Recurring Task Completion"
+  },
+  {
+   "default": "0",
+   "fieldname": "rtc_email",
+   "fieldtype": "Check",
+   "label": "Recurring Task Completion Email"
+  },
+  {
+   "default": "1",
+   "fieldname": "rtc_wa",
+   "fieldtype": "Check",
+   "label": "Recurring Task Completion Whatsapp"
+  },
+  {
+   "default": "1",
+   "fieldname": "otc_email",
+   "fieldtype": "Check",
+   "label": "Onetime Task Completion Email"
+  },
+  {
+   "default": "1",
+   "fieldname": "otc_on",
+   "fieldtype": "Check",
+   "label": "Onetime Task Completion"
+  },
+  {
+   "default": "1",
+   "fieldname": "otc_wa",
+   "fieldtype": "Check",
+   "label": "Onetime Task Completion Whatsapp"
+  },
+  {
+   "default": "1",
+   "fieldname": "td_on",
+   "fieldtype": "Check",
+   "label": "Task Deletion"
+  },
+  {
+   "default": "1",
+   "fieldname": "td_email",
+   "fieldtype": "Check",
+   "label": "Task Deletion Email"
+  },
+  {
+   "default": "1",
+   "fieldname": "td_wa",
+   "fieldtype": "Check",
+   "label": "Task Deletion Whatsapp"
+  },
+  {
+   "default": "0",
+   "fieldname": "pn_on",
+   "fieldtype": "Check",
+   "label": "Process Notification"
+  },
+  {
+   "default": "0",
+   "fieldname": "pn_email",
+   "fieldtype": "Check",
+   "label": "Process Notification Email"
+  },
+  {
+   "default": "0",
+   "fieldname": "pn_wa",
+   "fieldtype": "Check",
+   "label": "Process Notification WhatsApp"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-22 18:13:55.589422",
+ "modified_by": "sourav@clapgrow.com",
+ "module": "Clapgrow App",
+ "name": "CG Notification Setting",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-ADMIN",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "CG-ROLE-TEAM-LEAD",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "CG-ROLE-MEMBER",
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

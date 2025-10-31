@@ -1,0 +1,33 @@
+{
+  "attach_print": 0,
+  "channel": "System Notification",
+  "condition": "doc.status==\"Completed\"",
+  "creation": "2025-04-02 15:32:34.174514",
+  "days_in_advance": 0,
+  "docstatus": 0,
+  "doctype": "Notification",
+  "document_type": "CG Task Instance",
+  "enabled": 1,
+  "event": "Save",
+  "idx": 0,
+  "is_standard": 1,
+  "message": "<p> Please review the task details. It has been marked as <strong>completed</strong>.</p>\n",
+  "message_type": "HTML",
+  "minutes_offset": 0,
+  "modified": "2025-06-12 14:44:49.575465",
+  "modified_by": "sourav@clapgrow.com",
+  "module": "Clapgrow App",
+  "name": "Task Completed",
+  "owner": "Administrator",
+  "recipients": [
+    {
+      "condition": "",
+      "receiver_by_document_field": "owner",
+      "receiver_by_role": "All"
+    }
+  ],
+  "send_system_notification": 0,
+  "send_to_all_assignees": 0,
+  "set_property_after_alert": "",
+  "subject": "Completed: {{ doc.task_name }}"
+}

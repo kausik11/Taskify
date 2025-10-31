@@ -1,0 +1,39 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2025-07-11 13:55:16.429129",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["allow_step_branching"],
+  "fields": [
+    {
+      "default": "1",
+      "fieldname": "allow_step_branching",
+      "fieldtype": "Check",
+      "label": "Allow Step Branching"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "issingle": 1,
+  "links": [],
+  "modified": "2025-07-11 13:55:39.031063",
+  "modified_by": "Administrator",
+  "module": "Clapgrow Step",
+  "name": "Clapgrow Step Workflow Setting",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "print": 1,
+      "read": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
+}

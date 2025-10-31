@@ -1,0 +1,42 @@
+{
+  "name": "clapgrow_app",
+  "version": "1.0.0",
+  "description": "App to automate tasks and workflow",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "cd clapgrow && yarn test",
+    "test:watch": "cd clapgrow && yarn vitest:watch",
+    "test:coverage": "cd clapgrow && yarn test:coverage",
+    "postinstall": "cd clapgrow && yarn install",
+    "dev": "cd clapgrow && yarn dev",
+    "build": "cd clapgrow && yarn build",
+    "lint:py": "ruff check .",
+    "lint:js": "eslint . --fix",
+    "lint": "yarn lint:py && yarn lint:js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.36.0",
+    "@types/file-saver": "^2.0.7",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.46.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/react-datepicker": "^7.0.0",
+    "date-fns": "^4.1.0",
+    "dompurify": "^3.2.7",
+    "flat": "^6.0.1",
+    "lodash": "^4.17.21",
+    "react-datepicker": "^8.4.0"
+  },
+  "packageManager": "yarn@1.22.22+..."
+}

@@ -1,0 +1,41 @@
+name: Merge feature branches to dev
+
+on:
+  schedule:
+    - cron: "5 6 * * *" # 11:35 AM IST daily
+  workflow_dispatch:
+
+jobs:
+  merge-feature-to-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Merge feature branches into dev
+        run: |
+          git fetch origin
+          PR_LIST=$(gh pr list --base dev --state open --json number,headRefName --jq '.[] | "\(.number):\(.headRefName)"')
+          if [ -z "$PR_LIST" ]; then
+            echo "No open PRs to dev."
+            exit 0
+          fi
+
+          echo "$PR_LIST" | while IFS=: read -r PR_NUMBER HEAD_BRANCH; do
+            echo "Checking PR #$PR_NUMBER from $HEAD_BRANCH"
+            if [ -n "$(git log origin/dev..origin/$HEAD_BRANCH)" ]; then
+              CHECKS=$(gh pr checks "$PR_NUMBER" --json state --jq '.[].state' || echo "")
+              if echo "$CHECKS" | grep -qv "SUCCESS"; then
+                echo "Checks not passed. Skipping PR #$PR_NUMBER"
+                continue
+              fi
+              gh pr merge "$PR_NUMBER" --merge --auto
+              echo "Merged PR #$PR_NUMBER"
+            else
+              echo "No new commits in PR #$PR_NUMBER"
+            fi
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

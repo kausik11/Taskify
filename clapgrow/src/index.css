@@ -1,0 +1,343 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.task-input {
+	outline: none;
+	padding: 8px 0;
+	border-radius: 10px;
+	font-weight: 600;
+	transition: font-size 0.2s;
+	width: 100%;
+	/* Ensures the input takes up the full width of its container */
+}
+
+@layer base {
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 0 0% 3.9%;
+		--card: 0 0% 100%;
+		--card-foreground: 0 0% 3.9%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 0 0% 3.9%;
+		--primary: 0 0% 9%;
+		--primary-foreground: 0 0% 98%;
+		--secondary: 0 0% 96.1%;
+		--secondary-foreground: 0 0% 9%;
+		--muted: 0 0% 96.1%;
+		--muted-foreground: 0 0% 45.1%;
+		--accent: 0 0% 96.1%;
+		--accent-foreground: 0 0% 9%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 0 0% 89.8%;
+		--input: 0 0% 89.8%;
+		--ring: 0 0% 3.9%;
+		--radius: 0.5rem;
+		--chart-1: 12 76% 61%;
+		--chart-2: 173 58% 39%;
+		--chart-3: 197 37% 24%;
+		--chart-4: 43 74% 66%;
+		--chart-5: 27 87% 67%;
+	}
+
+	.dark {
+		--background: 0 0% 3.9%;
+		--foreground: 0 0% 98%;
+		--card: 0 0% 3.9%;
+		--card-foreground: 0 0% 98%;
+		--popover: 0 0% 3.9%;
+		--popover-foreground: 0 0% 98%;
+		--primary: 0 0% 98%;
+		--primary-foreground: 0 0% 9%;
+		--secondary: 0 0% 14.9%;
+		--secondary-foreground: 0 0% 98%;
+		--muted: 0 0% 14.9%;
+		--muted-foreground: 0 0% 63.9%;
+		--accent: 0 0% 14.9%;
+		--accent-foreground: 0 0% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 0 0% 14.9%;
+		--input: 0 0% 14.9%;
+		--ring: 0 0% 83.1%;
+		--chart-1: 220 70% 50%;
+		--chart-2: 160 60% 45%;
+		--chart-3: 30 80% 55%;
+		--chart-4: 280 65% 60%;
+		--chart-5: 340 75% 55%;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+@layer components {
+	.bg-black\/80 {
+		@apply bg-transparent !important;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+
+/* Optional: If you want to also ensure no background thumb is visible */
+::-webkit-scrollbar-thumb {
+	background: transparent;
+}
+
+.scroll-hidden {
+	scrollbar-width: none;
+	/* Firefox */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+/* Fullscreen loader with classic styling */
+.loader-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.7);
+	/* Semi-transparent dark background */
+	z-index: 9999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loader-content {
+	display: flex;
+	flex-direction: column;
+	/* Align spinner and text vertically */
+	align-items: center;
+	/* Center horizontally */
+	text-align: center;
+}
+
+.classic-spinner {
+	border: 4px solid rgba(255, 255, 255, 0.2);
+	/* Light white transparent border */
+	border-top: 4px solid #3498db;
+	/* Blue spinner */
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	animation: spin 1s linear infinite;
+	margin-bottom: 16px;
+	/* Add space between spinner and text */
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.loader-text {
+	font-size: 16px;
+	color: #fff;
+	/* White text */
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	/* Classic font */
+}
+
+.ag-header {
+	background-color: #f5f8fb;
+	color: #2d2c37;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.example-wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.grid-wrapper {
+	flex: 1 1 0px;
+	width: 100%;
+}
+
+.ag-root-wrapper {
+	border: none;
+	border-radius: 0;
+}
+
+#myGrid {
+	height: 100%;
+}
+
+/* for grid header middle allign*/
+/* .ag-header-middle-align{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+ /* index.css or AGComponent.module.css */
+.ag-header-middle-align {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; /* Optional: horizontally center if needed */
+}
+
+
+.example-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.grid-wrapper {
+  flex: 1 1 0px;
+  width: 100%;
+}
+
+.ag-grid-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* Ensure buttons have consistent styling */
+button {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* for columndefs */
+.my-header-center .ag-header-cell-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+}
+
+.my-header-center .ag-header-cell-text {
+  text-align: center;
+  width: 100%;
+}
+
+/* .my-header-center .ag-header-icon{
+  position: static !important;  
+  margin-left: 4px;            
+  color: green;  
+} */
+ /* hide AG Grid's built-in header icons so they don't float right */
+/* .ag-header-cell .ag-header-cell-menu-button,
+.ag-header-cell .ag-header-icon, */
+/* .ag-header-cell .ag-floating-filter-button {
+  display: inline-block !important;
+} */
+
+/* style the custom button/icon */
+/* .cg-header-icon-btn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+} */
+
+/* .cg-header-icon-img {
+  width: 14px;
+  height: 14px;
+  display: block;
+} */
+
+.ag-paging-panel {
+  height: 50px; /* set your desired height */
+}
+
+
+/* header filter icon position */
+/* .ag-header-cell {
+	  position: flex; 
+	  align-items: center;
+	  justify-content: flex-start;
+	  background-color: rgb(22, 202, 61);
+	 
+} */
+/* .ag-header-cell-label {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  color: red;
+  background-color: yellow;
+	
+} */
+/* .ag-header-cell-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+    flex: 0 1 auto;
+	 position: relative;
+	 color: blue;
+} */
+/* .ag-header-icon {
+	position: absolute;
+  color: blue;
+  background-color: red;
+  left: 90px;
+  z-index: 100;
+} */
+
+/* For top-left and top-right rounded corners */
+.ag-header {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow: hidden; /* clips child elements */
+}
+
+
+/* cross weight should 800 */
+.sheet-close-thick button[aria-label="Close"] svg,
+.sheet-close-thick button > svg {
+  stroke-width: 3 !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  border: none !important;
+  background: none !important;
+  fill: none !important;
+  cursor: pointer !important;
+  font-weight: 900 !important;
+}
+
+@media only screen and (width: 412px) and (height: 914px) {
+  .ag-grid-container {
+    width: 350px !important; /* Set specific width */
+  }
+}

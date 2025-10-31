@@ -1,0 +1,29 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/App.tsx",
+    "src/main.tsx",
+    "proxyOptions.ts",
+    "src/pages/auth/**/*",
+    "src/routes/**/*",
+    "src/components/**/*",
+    "src/containers/**/*",
+    "src/data/**/*",
+    "src/hooks/**/*",
+    "src/layouts/**/*",
+    "src/lib/**/*",
+    "src/setupTests.ts",
+    "src/tests/**/*",
+    "src/types/**/*",
+    "src/utils/**/*",
+    "src/vite-env.d.ts",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    "dist/**/*",
+    "build/**/*",
+    "clapgrow_app/public/**/*"
+  ]
+}

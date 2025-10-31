@@ -1,0 +1,33 @@
+name: Merge dev to test (daily)
+
+on:
+  schedule:
+    - cron: '30 2 * * *'  # 8:00 AM IST
+
+jobs:
+  merge-dev-to-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Promote dev → test
+        run: |
+          git fetch origin
+          CHANGES=$(git log origin/test..origin/dev)
+          if [ -z "$CHANGES" ]; then
+            echo "No new commits from dev to test."
+            exit 0
+          fi
+
+          PR_EXISTS=$(gh pr list --base test --head dev --state open --json number --jq '.[0].number')
+          if [ -z "$PR_EXISTS" ]; then
+            gh pr create --base test --head dev --title "Auto PR: dev → test" --body "Promoting dev to test"
+            PR_EXISTS=$(gh pr list --base test --head dev --state open --json number --jq '.[0].number')
+          fi
+
+          gh pr merge "$PR_EXISTS" --merge --auto
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

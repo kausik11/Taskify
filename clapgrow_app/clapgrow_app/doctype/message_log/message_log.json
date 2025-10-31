@@ -1,0 +1,126 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2025-01-12 16:53:23.340342",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "instance",
+    "company_id",
+    "chat_id",
+    "message",
+    "message_type",
+    "acknowledgement_status",
+    "serialized_id",
+    "media_url",
+    "media_base64",
+    "media_caption",
+    "media_name",
+    "as_document",
+    "has_media",
+    "media_type"
+  ],
+  "fields": [
+    {
+      "fieldname": "instance",
+      "fieldtype": "Link",
+      "label": "Instance",
+      "options": "Whatsapp Instance"
+    },
+    {
+      "fieldname": "company_id",
+      "fieldtype": "Link",
+      "label": "Company ID",
+      "options": "CG Company"
+    },
+    {
+      "fieldname": "chat_id",
+      "fieldtype": "Data",
+      "label": "Chat ID"
+    },
+    {
+      "fieldname": "message",
+      "fieldtype": "Long Text",
+      "label": "Message "
+    },
+    {
+      "fieldname": "message_type",
+      "fieldtype": "Select",
+      "label": "Message Type",
+      "options": "Sent\nReceived"
+    },
+    {
+      "fieldname": "acknowledgement_status",
+      "fieldtype": "Select",
+      "label": "Acknowledgement Status",
+      "options": "Sent\nDelivered\nRead"
+    },
+    {
+      "fieldname": "serialized_id",
+      "fieldtype": "Data",
+      "label": "Serialized ID"
+    },
+    {
+      "fieldname": "media_url",
+      "fieldtype": "Data",
+      "label": "Media URL"
+    },
+    {
+      "fieldname": "media_base64",
+      "fieldtype": "Long Text",
+      "label": "Media Base64"
+    },
+    {
+      "fieldname": "media_caption",
+      "fieldtype": "Long Text",
+      "label": "Media Caption"
+    },
+    {
+      "fieldname": "media_name",
+      "fieldtype": "Data",
+      "label": "Media Name"
+    },
+    {
+      "default": "0",
+      "fieldname": "as_document",
+      "fieldtype": "Check",
+      "label": "As Document"
+    },
+    {
+      "default": "0",
+      "fieldname": "has_media",
+      "fieldtype": "Check",
+      "label": "Has Media"
+    },
+    {
+      "default": "0",
+      "fieldname": "media_type",
+      "fieldtype": "Data",
+      "label": "Media Type "
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-01-12 17:08:04.244427",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "Message Log",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
+}

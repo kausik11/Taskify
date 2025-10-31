@@ -1,0 +1,85 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2025-03-03 10:47:26.628350",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "subtask_name",
+  "assigned_to",
+  "submit_file",
+  "subtask_id",
+  "column_break_odqi",
+  "due_date",
+  "is_completed",
+  "company_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "subtask_name",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Subtask Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assigned To",
+   "options": "CG User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "submit_file",
+   "fieldtype": "JSON",
+   "label": "Submit File"
+  },
+  {
+   "fieldname": "column_break_odqi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Due Date",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_completed",
+   "fieldtype": "Check",
+   "label": "Is Completed"
+  },
+  {
+   "fieldname": "company_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company ID",
+   "options": "CG Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "subtask_id",
+   "fieldtype": "Data",
+   "label": "Subtask ID"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-09-05 18:08:29.988436",
+ "modified_by": "Administrator",
+ "module": "Clapgrow App",
+ "name": "CG Subtask Instance",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

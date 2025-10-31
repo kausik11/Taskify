@@ -1,0 +1,80 @@
+{
+  "actions": [],
+  "autoname": "autoincrement",
+  "creation": "2025-01-12 16:50:53.361825",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "instance_id",
+    "company_id",
+    "qr_code_data",
+    "generated_on",
+    "image"
+  ],
+  "fields": [
+    {
+      "fieldname": "instance_id",
+      "fieldtype": "Link",
+      "label": "Instance ID",
+      "options": "Whatsapp Instance"
+    },
+    {
+      "fieldname": "company_id",
+      "fieldtype": "Link",
+      "label": "Company ID",
+      "options": "CG Company"
+    },
+    {
+      "fieldname": "qr_code_data",
+      "fieldtype": "Text",
+      "label": "QR Code Data"
+    },
+    {
+      "fieldname": "generated_on",
+      "fieldtype": "Datetime",
+      "label": "Generated On"
+    },
+    {
+      "fieldname": "image",
+      "fieldtype": "Attach Image",
+      "label": "Image"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-01-13 09:40:27.348766",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "QR Code",
+  "naming_rule": "Autoincrement",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-ADMIN",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
+}

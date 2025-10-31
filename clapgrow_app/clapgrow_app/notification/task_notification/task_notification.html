@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task Created Notification</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				color: #333;
+				background-color: #f9f9f9;
+				margin: 0;
+				padding: 0;
+			}
+			.container {
+				width: 600px;
+				margin: 0 auto;
+				background-color: #fff;
+				padding: 20px;
+				border: 1px solid #ddd;
+				border-radius: 8px;
+			}
+			.header {
+				text-align: center;
+				padding-bottom: 20px;
+				border-bottom: 1px solid #ddd;
+			}
+			.header h2 {
+				margin: 0;
+				color: #4caf50;
+			}
+			.content {
+				margin-top: 20px;
+			}
+			.content p {
+				font-size: 16px;
+				line-height: 1.5;
+			}
+			.footer {
+				text-align: center;
+				margin-top: 20px;
+				font-size: 12px;
+				color: #888;
+			}
+			.button {
+				display: inline-block;
+				background-color: #4caf50;
+				color: white;
+				padding: 10px 20px;
+				text-decoration: none;
+				border-radius: 4px;
+				font-weight: bold;
+				text-align: center;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<h2>New Task Created</h2>
+			</div>
+			<div class="content">
+				<p>Dear <strong>{{ user_name }}</strong>,</p>
+				<p>
+					We are pleased to inform you that a new task has been created in the
+					system.
+				</p>
+
+				<h3>Task Details:</h3>
+				<ul>
+					<li><strong>Task Name:</strong> {{ task_name }}</li>
+					<li><strong>Due Date:</strong> {{ due_date }}</li>
+					<li><strong>Priority:</strong> {{ priority }}</li>
+					<li><strong>Description:</strong> {{ task_description }}</li>
+				</ul>
+
+				<p>
+					If you would like to view or edit this task, please click the button
+					below:
+				</p>
+				<a href="{{ task_link }}" class="button">View Task</a>
+			</div>
+			<div class="footer">
+				<p>
+					Regards, <br />
+					The Team
+				</p>
+				<p>If you have any questions, please feel free to contact us.</p>
+			</div>
+		</div>
+	</body>
+</html>

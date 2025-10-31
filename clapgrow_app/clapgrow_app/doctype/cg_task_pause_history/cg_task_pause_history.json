@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-08-28 15:11:10.186379",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "task_definition_id",
+  "action_type",
+  "pause_start_date",
+  "pause_end_date",
+  "reason",
+  "column_break_1",
+  "performed_by",
+  "performed_on",
+  "instances_deleted",
+  "instances_created"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Naming Series",
+   "options": "TPH-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "task_definition_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Task Definition",
+   "options": "CG Task Definition",
+   "reqd": 1
+  },
+  {
+   "fieldname": "action_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Action Type",
+   "options": "\nPause\nResume\nManual Generate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pause_start_date",
+   "fieldtype": "Datetime",
+   "label": "Pause Start Date"
+  },
+  {
+   "fieldname": "pause_end_date",
+   "fieldtype": "Datetime",
+   "label": "Pause End Date"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Text",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "user",
+   "fieldname": "performed_by",
+   "fieldtype": "Link",
+   "label": "Performed By",
+   "options": "CG User"
+  },
+  {
+   "default": "now",
+   "fieldname": "performed_on",
+   "fieldtype": "Datetime",
+   "label": "Performed On"
+  },
+  {
+   "default": "0",
+   "fieldname": "instances_deleted",
+   "fieldtype": "Int",
+   "label": "Instances Deleted"
+  },
+  {
+   "default": "0",
+   "fieldname": "instances_created",
+   "fieldtype": "Int",
+   "label": "Instances Created"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-28 15:58:02.015787",
+ "modified_by": "Administrator",
+ "module": "Clapgrow App",
+ "name": "CG Task Pause History",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-ADMIN",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task Insights</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 20px;
+			}
+			table,
+			th,
+			td {
+				border: 1px solid #ddd;
+			}
+			th,
+			td {
+				padding: 8px 12px;
+				text-align: left;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Task Insights</h1>
+
+		{% if data.insights %}
+		<table>
+			<thead>
+				<tr>
+					<th>Team Member</th>
+					<th>Branch</th>
+					<th>Department</th>
+					<th>Not Done Tasks</th>
+					<th>Done Tasks</th>
+					<th>Done On Time Tasks</th>
+					<th>Current Planned Tasks</th>
+					<th>Current Actual Tasks</th>
+					<th>Current Actual Percentage</th>
+					<th>Current Actual On Time Percentage</th>
+					<th>Task Overdue</th>
+					<th>Not Approved Count</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for insight in data.insights %}
+				<tr>
+					<td>{{ insight.team_member.user_name }}</td>
+					<td>{{ insight.branch }}</td>
+					<td>{{ insight.department }}</td>
+					<td>{{ insight.not_done_tasks }}</td>
+					<td>{{ insight.done_tasks }}</td>
+					<td>{{ insight.done_on_time_tasks }}</td>
+					<td>{{ insight.current_planned }}</td>
+					<td>{{ insight.current_actual }}</td>
+					<td>{{ "%.2f"|format(insight.current_actual_percentage) }}%</td>
+					<td>
+						{{ "%.2f"|format(insight.current_actual_on_time_percentage) }}%
+					</td>
+					<td>{{ insight.task_overdue }}</td>
+					<td>{{ insight.not_approved_count }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<p>No insights available. {{ data.message }}</p>
+		{% endif %}
+	</body>
+</html>

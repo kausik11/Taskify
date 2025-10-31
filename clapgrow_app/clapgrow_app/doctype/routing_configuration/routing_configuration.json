@@ -1,0 +1,53 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2025-06-14 12:48:05.977661",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": ["label", "doctype_name", "url", "hide", "list_props"],
+  "fields": [
+    {
+      "fieldname": "label",
+      "fieldtype": "Data",
+      "label": "Label",
+      "reqd": 1
+    },
+    {
+      "fieldname": "doctype_name",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Doctype Name",
+      "options": "DocType"
+    },
+    {
+      "fieldname": "url",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "URL"
+    },
+    {
+      "default": "0",
+      "fieldname": "hide",
+      "fieldtype": "Check",
+      "label": "Hide"
+    },
+    {
+      "fieldname": "list_props",
+      "fieldtype": "JSON",
+      "label": "List Props"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2025-06-24 13:38:49.278495",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "Routing Configuration",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
+}

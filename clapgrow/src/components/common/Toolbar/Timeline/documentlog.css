@@ -1,0 +1,28 @@
+.log-markdown .markdown * {
+	font-weight: 400;
+	font-size: var(--chakra-fontSizes-sm);
+	/* display: inline-block; */
+}
+
+.log-markdown a {
+	text-decoration: underline;
+}
+
+.log-markdown .markdown b {
+	font-weight: 600;
+}
+
+.log-markdown a:hover {
+	color: var(--chakra-colors-blue-500);
+	text-decoration: underline;
+}
+.underline-markdown {
+	text-decoration: underline;
+	font-weight: 400;
+	font-size: var(--chakra-fontSizes-sm);
+	display: inline-block;
+}
+
+.log-markdown .markdown .ql-editor {
+	padding: 0;
+}

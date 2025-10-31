@@ -1,0 +1,94 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:contact_id",
+  "creation": "2025-01-10 10:42:06.806686",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "instance",
+    "company_id",
+    "status",
+    "display_name",
+    "contact_id",
+    "formatted_number",
+    "profile_pic_url",
+    "self_link",
+    "qr_code"
+  ],
+  "fields": [
+    {
+      "fieldname": "status",
+      "fieldtype": "Data",
+      "label": "Status"
+    },
+    {
+      "fieldname": "display_name",
+      "fieldtype": "Data",
+      "label": "Display Name"
+    },
+    {
+      "fieldname": "contact_id",
+      "fieldtype": "Data",
+      "label": "Contact ID",
+      "unique": 1
+    },
+    {
+      "fieldname": "formatted_number",
+      "fieldtype": "Phone",
+      "label": "Formatted Number"
+    },
+    {
+      "fieldname": "profile_pic_url",
+      "fieldtype": "Attach Image",
+      "label": "Profile Pic URL"
+    },
+    {
+      "fieldname": "self_link",
+      "fieldtype": "Data",
+      "label": "Self Link"
+    },
+    {
+      "fieldname": "qr_code",
+      "fieldtype": "Attach Image",
+      "label": "QR Code"
+    },
+    {
+      "fieldname": "instance",
+      "fieldtype": "Link",
+      "label": "Instance",
+      "options": "Whatsapp Instance"
+    },
+    {
+      "fieldname": "company_id",
+      "fieldtype": "Link",
+      "label": "Company ID",
+      "options": "CG Company"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-01-12 16:58:30.065180",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "Whatsapp Client",
+  "naming_rule": "By fieldname",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
+}

@@ -1,0 +1,111 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:instance_id",
+  "creation": "2025-01-10 10:38:34.724727",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "instance_id",
+    "instance_owner",
+    "instance_url",
+    "webhook_events",
+    "is_trial",
+    "status",
+    "qr_code",
+    "instance_status",
+    "company_id"
+  ],
+  "fields": [
+    {
+      "fieldname": "instance_id",
+      "fieldtype": "Data",
+      "label": "Instance ID",
+      "unique": 1
+    },
+    {
+      "fieldname": "instance_owner",
+      "fieldtype": "Data",
+      "label": "Instance Owner"
+    },
+    {
+      "fieldname": "instance_url",
+      "fieldtype": "HTML",
+      "label": "Webhook URL"
+    },
+    {
+      "fieldname": "webhook_events",
+      "fieldtype": "Text",
+      "label": "Webhook Events",
+      "options": "message\nloading_screen\nqr\nauthenticated\nauth_failure\nready\ndisconnected\nmessage_create message_revoke_everyone\nmessage_revoke_me\nmessage_ack\nmessage_reaction\nmedia_uploaded\ngroup_join\ngroup_leave\ngroup_update\nchange_state\ncall\nvote_update"
+    },
+    {
+      "default": "0",
+      "fieldname": "is_trial",
+      "fieldtype": "Check",
+      "label": "Is Trial"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "success\nerror"
+    },
+    {
+      "fieldname": "qr_code",
+      "fieldtype": "HTML",
+      "label": "QR Code Image"
+    },
+    {
+      "fieldname": "instance_status",
+      "fieldtype": "Select",
+      "label": "Instance Status",
+      "options": "booting\nloading_screen\nqr\nauthenticated\nauth_failure\nready\ndisconnected"
+    },
+    {
+      "fieldname": "company_id",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Company ID",
+      "options": "CG Company",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-01-13 15:34:46.294469",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "Whatsapp Instance",
+  "naming_rule": "By fieldname",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-ADMIN",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
+}

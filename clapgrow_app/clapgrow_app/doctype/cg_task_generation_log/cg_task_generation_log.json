@@ -1,0 +1,241 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-19 10:00:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "generation_date",
+  "generation_status",
+  "total_definitions",
+  "total_chunks",
+  "processed_chunks",
+  "total_processed",
+  "total_active",
+  "total_paused",
+  "total_resumed",
+  "total_instances_created",
+  "total_errors",
+  "generation_duration_seconds",
+  "week_start_date",
+  "week_end_date",
+  "started_at",
+  "completed_at",
+  "error_message",
+  "error_details",
+  "generation_summary",
+  "column_break_14",
+  "created_by",
+  "creation_time",
+  "modified_by",
+  "modified_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "generation_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Generation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "generation_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Generation Status",
+   "options": "In Progress\nCompleted\nFailed\nPartial Success",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_definitions",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Definitions",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_chunks",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Chunks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "processed_chunks",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Processed Chunks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_processed",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Processed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_active",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Active",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_paused",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Paused",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_resumed",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Resumed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_errors",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Errors",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_instances_created",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Instances Created",
+   "read_only": 1
+  },
+  {
+   "fieldname": "generation_duration_seconds",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Generation Duration (seconds)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "week_start_date",
+   "fieldtype": "Date",
+   "label": "Week Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "week_end_date",
+   "fieldtype": "Date",
+   "label": "Week End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "started_at",
+   "fieldtype": "Datetime",
+   "label": "Started At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "completed_at",
+   "fieldtype": "Datetime",
+   "label": "Completed At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Text",
+   "label": "Error Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_details",
+   "fieldtype": "Long Text",
+   "label": "Error Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "generation_summary",
+   "fieldtype": "Long Text",
+   "label": "Generation Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "label": "Created By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "creation_time",
+   "fieldtype": "Datetime",
+   "label": "Creation Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "modified_by",
+   "fieldtype": "Data",
+   "label": "Modified By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "modified_time",
+   "fieldtype": "Datetime",
+   "label": "Modified Time",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-19 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Clapgrow App",
+ "name": "CG Task Generation Log",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-ADMIN",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-MANAGER",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
+

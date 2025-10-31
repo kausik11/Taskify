@@ -1,0 +1,13 @@
+[pre_model_sync]
+# Patches added in this section will be executed before doctypes are migrated
+# Read docs to understand patches: https://frappeframework.com/docs/v14/user/en/database-migrations
+
+[post_model_sync]
+# Patches added in this section will be executed after doctypes are migrated
+
+clapgrow_app.patches.clapgrow_routing_configuration
+clapgrow_app.patches.update_status_priority_map
+clapgrow_app.patches.update_completion_platform_to_web
+clapgrow_app.patches.cleanup_invalid_routing_entries
+clapgrow_app.patches.update_notification_fields
+clapgrow_app.patches.fix_processing_notification_status

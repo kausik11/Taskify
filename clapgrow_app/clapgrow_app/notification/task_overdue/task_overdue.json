@@ -1,0 +1,34 @@
+{
+  "attach_print": 0,
+  "channel": "System Notification",
+  "condition": "",
+  "creation": "2025-04-02 15:35:41.913908",
+  "date_changed": "due_date",
+  "days_in_advance": 1,
+  "docstatus": 0,
+  "doctype": "Notification",
+  "document_type": "CG Task Instance",
+  "enabled": 1,
+  "event": "Days After",
+  "idx": 0,
+  "is_standard": 1,
+  "message": "Task \"{{ doc.name }}\" has exceeded Due Date. Please take the necessary action.\n\n\n{% if comments %}\nLast comment: {{ comments[-1].comment }} by {{ comments[-1].by }}\n{% endif %}\n\n*Details*\n\n\u2022 Assignee: {{ doc.assignee }}\n\u2022 Priority: {{ doc.priority }}\n\u2022 Due Date: {{ doc.due_date }}\n\n\n\n\n",
+  "message_type": "HTML",
+  "minutes_offset": 0,
+  "modified": "2025-06-02 17:40:11.011843",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "Task Overdue",
+  "owner": "Administrator",
+  "recipients": [
+    {
+      "condition": "",
+      "receiver_by_document_field": "assigned_to",
+      "receiver_by_role": ""
+    }
+  ],
+  "send_system_notification": 0,
+  "send_to_all_assignees": 0,
+  "set_property_after_alert": "",
+  "subject": "Overdue: {{ doc.task_name }}"
+}

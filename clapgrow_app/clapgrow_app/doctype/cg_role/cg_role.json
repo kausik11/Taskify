@@ -1,0 +1,370 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2024-08-19 12:24:59.636951",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "role_name",
+    "company_id",
+    "assign_tasks_section",
+    "assign_team_member",
+    "assign_team_lead",
+    "assign_admin",
+    "assign_self",
+    "can_create_section",
+    "create_onetime_task",
+    "create_recurring_task",
+    "create_fms",
+    "create_help_ticket",
+    "settings_access_section",
+    "branches_create",
+    "branches_delete",
+    "branches_read",
+    "branches_write",
+    "department_create",
+    "department_delete",
+    "department_read",
+    "department_write",
+    "holiday_create",
+    "holiday_delete",
+    "holiday_read",
+    "holiday_write",
+    "team_members_create",
+    "team_members_delete",
+    "team_members_read",
+    "team_members_write",
+    "notifications_create",
+    "notifications_delete",
+    "notifications_read",
+    "notifications_write",
+    "tags_create",
+    "tags_delete",
+    "tags_read",
+    "tags_write",
+    "roles_create",
+    "roles_delete",
+    "roles_read",
+    "roles_write",
+    "access_section",
+    "mis",
+    "smart_insights"
+  ],
+  "fields": [
+    {
+      "fieldname": "role_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Role Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "company_id",
+      "fieldtype": "Link",
+      "label": "Company ID",
+      "options": "CG Company"
+    },
+    {
+      "fieldname": "assign_tasks_section",
+      "fieldtype": "Section Break",
+      "label": "Assign Tasks"
+    },
+    {
+      "default": "0",
+      "fieldname": "assign_team_member",
+      "fieldtype": "Check",
+      "label": "Assign Team Member"
+    },
+    {
+      "default": "0",
+      "fieldname": "assign_team_lead",
+      "fieldtype": "Check",
+      "label": "Assign Team Lead"
+    },
+    {
+      "default": "0",
+      "fieldname": "assign_admin",
+      "fieldtype": "Check",
+      "label": "Assign Admin"
+    },
+    {
+      "default": "1",
+      "fieldname": "assign_self",
+      "fieldtype": "Check",
+      "label": "Assign Self"
+    },
+    {
+      "fieldname": "can_create_section",
+      "fieldtype": "Section Break",
+      "label": "Can Create"
+    },
+    {
+      "default": "0",
+      "fieldname": "create_onetime_task",
+      "fieldtype": "Check",
+      "label": "Create Onetime Task"
+    },
+    {
+      "default": "0",
+      "fieldname": "create_recurring_task",
+      "fieldtype": "Check",
+      "label": "Create Recurring Task"
+    },
+    {
+      "default": "0",
+      "fieldname": "create_fms",
+      "fieldtype": "Check",
+      "label": "Create FMS"
+    },
+    {
+      "default": "0",
+      "fieldname": "create_help_ticket",
+      "fieldtype": "Check",
+      "label": "Create Help Ticket"
+    },
+    {
+      "fieldname": "settings_access_section",
+      "fieldtype": "Section Break",
+      "label": "Settings Access"
+    },
+    {
+      "default": "0",
+      "fieldname": "branches_create",
+      "fieldtype": "Check",
+      "label": "Branches Create"
+    },
+    {
+      "default": "0",
+      "fieldname": "branches_delete",
+      "fieldtype": "Check",
+      "label": "Branches Delete"
+    },
+    {
+      "default": "0",
+      "fieldname": "branches_read",
+      "fieldtype": "Check",
+      "label": "Branches Read"
+    },
+    {
+      "default": "0",
+      "fieldname": "branches_write",
+      "fieldtype": "Check",
+      "label": "Branches Write"
+    },
+    {
+      "default": "0",
+      "fieldname": "department_create",
+      "fieldtype": "Check",
+      "label": "Department Create"
+    },
+    {
+      "default": "0",
+      "fieldname": "department_delete",
+      "fieldtype": "Check",
+      "label": "Department Delete"
+    },
+    {
+      "default": "0",
+      "fieldname": "department_read",
+      "fieldtype": "Check",
+      "label": "Department Read"
+    },
+    {
+      "default": "0",
+      "fieldname": "department_write",
+      "fieldtype": "Check",
+      "label": "Department Write"
+    },
+    {
+      "default": "0",
+      "fieldname": "holiday_create",
+      "fieldtype": "Check",
+      "label": "Holiday Create"
+    },
+    {
+      "default": "0",
+      "fieldname": "holiday_delete",
+      "fieldtype": "Check",
+      "label": "Holiday Delete"
+    },
+    {
+      "default": "0",
+      "fieldname": "holiday_read",
+      "fieldtype": "Check",
+      "label": "Holiday Read"
+    },
+    {
+      "default": "0",
+      "fieldname": "holiday_write",
+      "fieldtype": "Check",
+      "label": "Holiday Write"
+    },
+    {
+      "default": "0",
+      "fieldname": "team_members_create",
+      "fieldtype": "Check",
+      "label": "Team Members Create"
+    },
+    {
+      "default": "0",
+      "fieldname": "team_members_delete",
+      "fieldtype": "Check",
+      "label": "Team Members Delete"
+    },
+    {
+      "default": "0",
+      "fieldname": "team_members_read",
+      "fieldtype": "Check",
+      "label": "Team Members Read"
+    },
+    {
+      "default": "0",
+      "fieldname": "team_members_write",
+      "fieldtype": "Check",
+      "label": "Team Members Write"
+    },
+    {
+      "default": "0",
+      "fieldname": "notifications_create",
+      "fieldtype": "Check",
+      "label": "Notifications Create"
+    },
+    {
+      "default": "0",
+      "fieldname": "notifications_delete",
+      "fieldtype": "Check",
+      "label": "Notifications Delete"
+    },
+    {
+      "default": "0",
+      "fieldname": "notifications_read",
+      "fieldtype": "Check",
+      "label": "Notifications Read"
+    },
+    {
+      "default": "0",
+      "fieldname": "notifications_write",
+      "fieldtype": "Check",
+      "label": "Notifications Write"
+    },
+    {
+      "default": "0",
+      "fieldname": "tags_create",
+      "fieldtype": "Check",
+      "label": "Tags Create"
+    },
+    {
+      "default": "0",
+      "fieldname": "tags_delete",
+      "fieldtype": "Check",
+      "label": "Tags Delete"
+    },
+    {
+      "default": "0",
+      "fieldname": "tags_read",
+      "fieldtype": "Check",
+      "label": "Tags Read"
+    },
+    {
+      "default": "0",
+      "fieldname": "tags_write",
+      "fieldtype": "Check",
+      "label": "Tags Write"
+    },
+    {
+      "default": "0",
+      "fieldname": "roles_create",
+      "fieldtype": "Check",
+      "label": "Roles Create"
+    },
+    {
+      "default": "0",
+      "fieldname": "roles_delete",
+      "fieldtype": "Check",
+      "label": "Roles Delete"
+    },
+    {
+      "default": "0",
+      "fieldname": "roles_read",
+      "fieldtype": "Check",
+      "label": "Roles Read"
+    },
+    {
+      "default": "0",
+      "fieldname": "roles_write",
+      "fieldtype": "Check",
+      "label": "Roles Write"
+    },
+    {
+      "fieldname": "access_section",
+      "fieldtype": "Section Break",
+      "label": "Access"
+    },
+    {
+      "default": "0",
+      "fieldname": "mis",
+      "fieldtype": "Check",
+      "label": "MIS"
+    },
+    {
+      "default": "0",
+      "fieldname": "smart_insights",
+      "fieldtype": "Check",
+      "label": "Smart Insights"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-05-22 03:35:13.203522",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "CG Role",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-ADMIN",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-TEAM-LEAD",
+      "share": 1
+    },
+    {
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-MEMBER",
+      "share": 1
+    }
+  ],
+  "row_format": "Dynamic",
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": [],
+  "title_field": "role_name"
+}

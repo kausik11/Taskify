@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://clapgrow.frappe.cloud/sitemap.xml
+
+# Allow all search engines to crawl
+Crawl-delay: 1
+
+# Disallow admin and private areas
+Disallow: /api/
+Disallow: /app/
+Disallow: /desk/
+Disallow: /login
+Disallow: /logout
+Disallow: /_api/
+Disallow: /_test/
+Disallow: /private/
+Disallow: /tmp/
+
+# Allow public pages
+Allow: /clapgrow/
+Allow: /public/
+Allow: /assets/
+

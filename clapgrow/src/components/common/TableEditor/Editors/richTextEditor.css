@@ -1,0 +1,8 @@
+.rich-text-table-editor {
+	background-color: white;
+	width: 320px;
+}
+
+.rich-text-table-editor .ql-editor {
+	height: 200px;
+}

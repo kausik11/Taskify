@@ -1,0 +1,93 @@
+.dot-pulse-loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+.dot {
+	border-radius: 50%;
+	opacity: 0.6;
+	animation: dotPulse ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 0.6;
+	}
+	50% {
+		transform: scale(1.4);
+		opacity: 1;
+	}
+}
+
+.dot-stream-loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+
+.dot-stream-loader span {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #1d4ed8; /* blue-600 */
+	animation: dotPulse 1s infinite ease-in-out;
+}
+
+.dot-stream-loader span:nth-child(1) {
+	animation-delay: 0s;
+	opacity: 0.6;
+	width: 3px;
+	height: 3px;
+}
+.dot-stream-loader span:nth-child(2) {
+	animation-delay: 0.1s;
+	opacity: 0.9;
+	width: 5px;
+	height: 5px;
+}
+.dot-stream-loader span:nth-child(3) {
+	animation-delay: 0.2s;
+	opacity: 0.8;
+	width: 6px;
+	height: 6px;
+}
+
+.dot-stream-loader span:nth-child(4) {
+	animation-delay: 0.3s;
+	opacity: 0.7;
+	width: 7px;
+	height: 7px;
+}
+.dot-stream-loader span:nth-child(5) {
+	animation-delay: 0.4s;
+	opacity: 0.6;
+	width: 6px;
+	height: 6px;
+}
+.dot-stream-loader span:nth-child(6) {
+	animation-delay: 0.4s;
+	opacity: 0.6;
+	width: 5px;
+	height: 5px;
+}
+.dot-stream-loader span:nth-child(7) {
+	animation-delay: 0.4s;
+	opacity: 0.6;
+	width: 3px;
+	height: 3px;
+}
+
+@keyframes dotPulse {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.8);
+	}
+}

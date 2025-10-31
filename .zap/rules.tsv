@@ -1,0 +1,4 @@
+10010	IGNORE	(Cookie No HttpOnly Flag)
+10011	IGNORE	(Cookie Without Secure Flag)
+90001	IGNORE	(Insecure JSF ViewState)
+40018	IGNORE	(SQL Injection Fingerprinting)

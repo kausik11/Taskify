@@ -1,0 +1,253 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: "0 2 * * 1" # Weekly comprehensive security scan on Monday at 2 AM
+
+concurrency:
+  group: develop-clapgrow_app-${{ github.event.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  # Pre-build security scanning
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Pre-Build Security
+    timeout-minutes: 30
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # Full history for better secret detection
+
+      - name: Secret Detection with TruffleHog
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug --only-verified
+
+      # - name: Initialize CodeQL
+      #   uses: github/codeql-action/init@v3
+      #   with:
+      #     languages: python, javascript
+
+      # - name: Perform CodeQL Analysis
+      #   uses: github/codeql-action/analyze@v3
+
+      - name: Static Code Analysis with Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: >-
+            p/security-audit
+            p/secrets
+            p/owasp-top-ten
+            p/python
+            p/javascript
+
+      - name: Python Security Scan with Bandit
+        run: |
+          pip install bandit[toml]
+          bandit -r . -f json -o bandit-report.json || true
+
+      - name: Upload Security Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-reports
+          path: |
+            bandit-report.json
+          if-no-files-found: ignore
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: security-scan
+    if: always() && (needs.security-scan.result == 'success' || needs.security-scan.result == 'skipped')
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+    name: Server Tests
+    env:
+      MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    services:
+      redis-cache:
+        image: redis:alpine
+        ports:
+          - 13000:6379
+        options: --health-cmd="redis-cli ping" --health-interval=5s --health-timeout=2s --health-retries=3
+      redis-queue:
+        image: redis:alpine
+        ports:
+          - 11000:6379
+        options: --health-cmd="redis-cli ping" --health-interval=5s --health-timeout=2s --health-retries=3
+      mariadb:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        ports:
+          - 3306:3306
+        options: --health-cmd="mariadb-admin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22.12.0
+          cache: "yarn"
+          cache-dependency-path: "**/yarn.lock"
+
+      - name: Cache Frappe Bench & Dependencies
+        uses: actions/cache@v4
+        id: bench-cache
+        with:
+          path: |
+            ~/.cache/pip
+            ~/frappe-bench/env
+            ~/frappe-bench/apps/frappe
+          key: ${{ runner.os }}-bench-${{ hashFiles('**/requirements.txt', '**/pyproject.toml') }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bench-${{ hashFiles('**/requirements.txt', '**/pyproject.toml') }}-
+            ${{ runner.os }}-bench-
+
+      - name: Install MariaDB Client
+        run: |
+          sudo apt update
+          sudo apt-get install mariadb-client
+
+      - name: Setup Bench
+        if: steps.bench-cache.outputs.cache-hit != 'true'
+        run: |
+          pip install frappe-bench
+          bench init --skip-redis-config-generation --skip-assets --python "$(which python)" ~/frappe-bench
+
+      - name: Configure MariaDB
+        run: |
+          mariadb --host 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_ROOT_PASSWORD }} -e "SET GLOBAL character_set_server = 'utf8mb4'"
+          mariadb --host 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_ROOT_PASSWORD }} -e "SET GLOBAL collation_server = 'utf8mb4_unicode_ci'"
+
+      # Dependency audit after installation
+      - name: Python Dependency Audit
+        working-directory: /home/runner/frappe-bench
+        run: |
+          pip install safety pip-audit
+          # Check for known vulnerabilities
+          safety check --json --output safety-report.json || true
+          pip-audit --desc --output pip-audit-report.json --format=json || true
+
+      - name: Node.js Dependency Audit
+        working-directory: /home/runner/frappe-bench
+        run: |
+          if [ -f package-lock.json ]; then
+            npm audit --audit-level high --json > npm-audit-report.json || true
+          fi
+
+          if [ -f yarn.lock ]; then
+            yarn audit --json > yarn-audit-report.json || true
+          fi
+
+      - name: Install Custom Apps
+        working-directory: /home/runner/frappe-bench
+        run: |
+          if [ ! -d "sites/test_site" ]; then
+            bench new-site --db-root-password ${{ secrets.MYSQL_ROOT_PASSWORD }} --admin-password ${{ secrets.ADMIN_PASSWORD }} test_site
+          fi
+          bench get-app https://github.com/The-Commit-Company/frappe-types.git
+          bench get-app clapgrow_app $GITHUB_WORKSPACE
+          bench --site test_site install-app frappe_types
+          bench --site test_site install-app clapgrow_app
+          bench setup requirements --dev
+          bench update --requirements --patch --build
+          bench build
+        env:
+          CI: "Yes"
+
+      - name: Add to Hosts
+        run: |
+          echo "127.0.0.1 test_site" | sudo tee -a /etc/hosts
+
+      - name: Migrate Site
+        working-directory: /home/runner/frappe-bench
+        run: |
+          bench --site test_site migrate
+
+      - name: Start Application for DAST
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        working-directory: /home/runner/frappe-bench
+        run: |
+          bench --site test_site serve --port 8000 &
+          sleep 30  # Wait for application to start
+
+      # DAST scanning - only on scheduled runs or manual dispatch
+      - name: OWASP ZAP Dynamic Scan
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: zaproxy/action-full-scan@v0.12.0
+        with:
+          target: "http://test_site:8000"
+          rules_file_name: ".zap/rules.tsv"
+          cmd_options: "-a -d -T 60 -m 2"
+          allow_issue_writing: false
+
+      - name: Nikto Web Vulnerability Scan
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nikto
+          nikto -h http://test_site:8000 -Format json -output nikto-report.json || true
+
+      - name: Expose GitHub Runtime
+        uses: crazy-max/ghaction-github-runtime@v3
+
+      - name: Run Tests
+        working-directory: /home/runner/frappe-bench
+        run: |
+          bench --site test_site set-config allow_tests false
+          bench --site test_site run-tests --app clapgrow_app
+        env:
+          TYPE: server
+
+      - name: Install Postman CLI
+        if: env.POSTMAN_API_KEY != ''
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+
+      - name: Login to Postman CLI
+        if: env.POSTMAN_API_KEY != ''
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+
+      - name: Run API Security Tests
+        if: env.POSTMAN_API_KEY != '' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+        run: |
+          postman collection run "39478068-7acbe737-b21b-45af-93f2-835053bd9429" || echo "Postman collection not configured yet"
+
+      - name: Upload Security & Test Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-test-reports
+          path: |
+            safety-report.json
+            pip-audit-report.json
+            npm-audit-report.json
+            yarn-audit-report.json
+            nikto-report.json
+          if-no-files-found: ignore

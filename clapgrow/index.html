@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/png" href="/clapgrow.png" />
+		<link rel="shortcut icon" type="image/png" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- SEO Meta Tags -->
+		<title>Clapgrow</title>
+		<meta name="description" content="Clapgrow is a powerful task automation and workflow management platform that helps teams streamline their processes, automate repetitive tasks, and boost productivity. Get started with Clapgrow today!">
+		<meta name="keywords" content="task automation, workflow management, productivity, team collaboration, project management, business automation, clapgrow">
+		<meta name="author" content="Clapgrow">
+		<meta name="robots" content="index, follow">
+		<meta name="googlebot" content="index, follow">
+		
+		<!-- Open Graph Meta Tags for Social Media -->
+		<meta property="og:title" content="Clapgrow - Task Automation & Workflow Management Platform">
+		<meta property="og:description" content="Streamline your team's workflow with Clapgrow's powerful task automation platform. Boost productivity and efficiency today!">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://clapgrow.frappe.cloud">
+		<meta property="og:site_name" content="Clapgrow">
+		<meta property="og:locale" content="en_US">
+		
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Clapgrow - Task Automation & Workflow Management Platform">
+		<meta name="twitter:description" content="Streamline your team's workflow with Clapgrow's powerful task automation platform. Boost productivity and efficiency today!">
+		
+		<!-- Additional SEO Meta Tags -->
+		<meta name="theme-color" content="#2563eb">
+		<meta name="msapplication-TileColor" content="#2563eb">
+		<meta name="application-name" content="Clapgrow">
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href="https://clapgrow.frappe.cloud">
+		
+		<!-- Preconnect to external domains for performance -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script>
+			window.csrf_token = '{{ frappe.session.csrf_token }}';
+
+			      if (!window.frappe) window.frappe = {};
+
+			      frappe.boot = JSON.parse({{ boot }});
+		</script>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
+</html>

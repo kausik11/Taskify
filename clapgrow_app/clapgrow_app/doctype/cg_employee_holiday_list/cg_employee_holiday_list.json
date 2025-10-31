@@ -1,0 +1,212 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "format:EHL-{employee}-{YYYY}-{#####}",
+  "creation": "2025-08-07 02:18:05.968880",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "employee_details_section",
+    "employee",
+    "employee_name",
+    "column_break_1",
+    "branch_id",
+    "department_id",
+    "company_id",
+    "section_break_date_range",
+    "from_date",
+    "to_date",
+    "column_break_2",
+    "last_refreshed",
+    "auto_refresh",
+    "section_break_statistics",
+    "total_holidays",
+    "column_break_3",
+    "mandatory_holidays",
+    "optional_holidays",
+    "section_break_holidays",
+    "holidays"
+  ],
+  "fields": [
+    {
+      "fieldname": "employee_details_section",
+      "fieldtype": "Section Break",
+      "label": "Employee Details"
+    },
+    {
+      "fieldname": "employee",
+      "fieldtype": "Link",
+      "label": "Employee",
+      "options": "CG User",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "employee_name",
+      "fieldtype": "Data",
+      "label": "Employee Name",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "branch_id",
+      "fieldtype": "Link",
+      "label": "Branch",
+      "options": "CG Branch",
+      "read_only": 1
+    },
+    {
+      "fieldname": "department_id",
+      "fieldtype": "Link",
+      "label": "Department",
+      "options": "CG Department",
+      "read_only": 1
+    },
+    {
+      "fieldname": "company_id",
+      "fieldtype": "Link",
+      "label": "Company",
+      "options": "CG Company",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_break_date_range",
+      "fieldtype": "Section Break",
+      "label": "Date Range"
+    },
+    {
+      "fieldname": "from_date",
+      "fieldtype": "Date",
+      "label": "From Date",
+      "reqd": 1,
+      "default": "Today"
+    },
+    {
+      "fieldname": "to_date",
+      "fieldtype": "Date",
+      "label": "To Date",
+      "reqd": 1,
+      "description": "End date for holiday calculation"
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "last_refreshed",
+      "fieldtype": "Datetime",
+      "label": "Last Refreshed",
+      "read_only": 1
+    },
+    {
+      "fieldname": "auto_refresh",
+      "fieldtype": "Check",
+      "label": "Auto Refresh",
+      "default": 1,
+      "description": "Automatically refresh holidays when accessed"
+    },
+    {
+      "fieldname": "section_break_statistics",
+      "fieldtype": "Section Break",
+      "label": "Holiday Statistics"
+    },
+    {
+      "fieldname": "total_holidays",
+      "fieldtype": "Int",
+      "label": "Total Holidays",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "mandatory_holidays",
+      "fieldtype": "Int",
+      "label": "Mandatory Holidays",
+      "read_only": 1
+    },
+    {
+      "fieldname": "optional_holidays",
+      "fieldtype": "Int",
+      "label": "Optional Holidays",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_break_holidays",
+      "fieldtype": "Section Break",
+      "label": "Consolidated Holiday List"
+    },
+    {
+      "fieldname": "holidays",
+      "fieldtype": "Table",
+      "label": "Holidays",
+      "options": "CG Employee Holiday Detail",
+      "read_only": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-08-07 02:18:05.968880",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "CG Employee Holiday List",
+  "naming_rule": "Expression",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-ADMIN",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-TEAM-LEAD",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-MEMBER",
+      "share": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": [],
+  "title_field": "employee_name",
+  "track_changes": 1
+}

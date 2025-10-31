@@ -1,0 +1,49 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 3
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 5
+    assignees:
+      - "sourav@clapgrow.com"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday" 
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 5
+    assignees:
+      - "sourav@clapgrow.com"
+
+  - package-ecosystem: "docker"
+    directory: "/builds"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 3
+    assignees:
+      - "sourav@clapgrow.com"
+
+  - package-ecosystem: "github-actions"
+    directory: "/.github/workflows"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 3
+    assignees:
+      - "sourav@clapgrow.com"

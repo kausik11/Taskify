@@ -1,0 +1,70 @@
+---
+name: Create/Update PR to Dev
+
+on:
+  push:
+    branches-ignore:
+      - dev
+      - main
+
+jobs:
+  create-or-update-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Validate commit and create/update PR
+        run: |
+          # Fetch the latest commit author and message
+          AUTHOR=$(git log -1 --pretty=format:'%an')
+          COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')
+          CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+          # List of authorized commit authors
+          VALID_AUTHORS=("cgsourav" "kkclapgrow" "beetashoke" "clapgrowDev" "kausik")
+
+          # Check if the latest commit is a merge commit
+          IS_MERGE=$(git log -1 --pretty=%p | wc -w)
+          if [ "$IS_MERGE" -gt 1 ]; then
+            echo "Merge commit detected, skipping PR creation."
+            exit 0
+          fi
+
+          # Validate the commit author
+          if [[ ! " ${VALID_AUTHORS[@]} " =~ " ${AUTHOR} " ]]; then
+            echo "Invalid author: $AUTHOR. Exiting."
+            exit 1
+          fi
+
+          # Ensure there are commits to be merged
+          git fetch origin
+          if [ -z "$(git log origin/dev..origin/$CURRENT_BRANCH)" ]; then
+            echo "No new commits to merge from $CURRENT_BRANCH to dev. Exiting."
+            exit 0
+          fi
+
+          # Check if an open PR already exists
+          PR_EXISTS=$(gh pr list --base dev --head $CURRENT_BRANCH --state open --json number --jq '.[0].number')
+          if [ -n "$PR_EXISTS" ]; then
+            echo "An open PR already exists: #$PR_EXISTS. Updating with new commits."
+            exit 0
+          fi
+
+          # Construct PR details
+          PR_TITLE="Automated PR from $CURRENT_BRANCH to dev - ${COMMIT_MESSAGE:0:100}"
+          PR_BODY="This PR is automatically created by $AUTHOR based on the following commit: \"$COMMIT_MESSAGE\"."
+
+          # Create the PR using GitHub CLI
+          gh pr create --base dev --head $CURRENT_BRANCH --title "$PR_TITLE" --body "$PR_BODY"
+          echo "Pull request created successfully."
+
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: PR creation status
+        run: |
+          echo "Workflow completed successfully."

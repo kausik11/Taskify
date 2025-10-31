@@ -1,0 +1,31 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2025-04-25 03:02:55.621428",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": ["member"],
+  "fields": [
+    {
+      "fieldname": "member",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Member",
+      "options": "CG User",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2025-04-25 03:03:38.601277",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "CG Team Member",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
+}

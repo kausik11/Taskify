@@ -1,0 +1,32 @@
+{
+  "attach_print": 0,
+  "channel": "System Notification",
+  "condition": "doc.task_type==\"Onetime\"",
+  "creation": "2025-04-03 13:08:58.058531",
+  "days_in_advance": 0,
+  "docstatus": 0,
+  "doctype": "Notification",
+  "document_type": "CG Task Instance",
+  "enabled": 1,
+  "event": "New",
+  "idx": 0,
+  "is_standard": 1,
+  "message": "<p> Please review the task details and start working on it.</p>\n",
+  "message_type": "Markdown",
+  "minutes_offset": 0,
+  "modified": "2025-04-21 16:24:52.593895",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "Onetime task assigned",
+  "owner": "sourav@clapgrow.com",
+  "recipients": [
+    {
+      "receiver_by_document_field": "assigned_to",
+      "receiver_by_role": ""
+    }
+  ],
+  "send_system_notification": 0,
+  "send_to_all_assignees": 0,
+  "set_property_after_alert": "",
+  "subject": "New task assigned: {{ doc.task_name }}"
+}

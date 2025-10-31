@@ -1,0 +1,157 @@
+name: Linters
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: linters-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  python-lint:
+    name: Ruff + Pre-commit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+          cache: 'pip'
+
+      - name: Cache Ruff
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ruff
+          key: ${{ runner.os }}-ruff-${{ hashFiles('**/*.py') }}
+          restore-keys: ${{ runner.os }}-ruff-
+
+      - name: Install dependencies
+        run: pip install "ruff==0.6.9" pre-commit
+
+      - name: Run Ruff Check
+        run: ruff check . --output-format=github
+
+      - name: Run Ruff Format
+        run: ruff format --check .
+
+      - name: Run Pre-commit
+        uses: pre-commit/action@v3.0.1
+
+
+  semgrep:
+    name: Semgrep Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Cache Semgrep Rules
+        uses: actions/cache@v4
+        id: cache-semgrep
+        with:
+          path: frappe-semgrep-rules
+          key: ${{ runner.os }}-semgrep-rules-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-semgrep-rules-
+            ${{ runner.os }}-semgrep-
+
+      - name: Clone Semgrep Rules
+        if: steps.cache-semgrep.outputs.cache-hit != 'true'
+        run: |
+          rm -rf frappe-semgrep-rules
+          git clone --depth 1 https://github.com/frappe/semgrep-rules.git frappe-semgrep-rules
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+          cache: 'pip'
+
+      - name: Install Semgrep
+        run: pip install "semgrep==1.92.0"
+
+      - name: Run Semgrep
+        run: semgrep ci --config ./frappe-semgrep-rules/rules --exclude-rule frappe-using-db-sql
+
+
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            **/*.js
+            **/*.jsx
+            **/*.ts
+            **/*.tsx
+
+      - uses: actions/setup-node@v5
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          node-version: 22.12.0
+          cache: 'yarn'
+
+      - name: Install dependencies
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: yarn install --frozen-lockfile
+
+      - name: Setup Reviewdog
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: reviewdog/action-setup@d8edfce3dd5e1ec6978745e801f9c50b5ef80252
+        with:
+          reviewdog_version: latest
+
+      - name: Run ESLint on Changed Files
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "${{ steps.changed-files.outputs.all_changed_files }}" | xargs yarn eslint --format=json --output-file eslint-report.json || true
+          cat eslint-report.json | reviewdog -f=eslint -reporter=github-pr-review -fail-on-error=true
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Skip ESLint
+        if: steps.changed-files.outputs.any_changed != 'true'
+        run: echo "No JS/TS files changed, skipping ESLint"
+
+
+  lint-status:
+    name: Lint Summary
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [python-lint, semgrep, eslint]
+
+    steps:
+      - name: Check lint status
+        run: |
+          if [[ "${{ needs.python-lint.result }}" == "failure" ]] || \
+             [[ "${{ needs.semgrep.result }}" == "failure" ]] || \
+             [[ "${{ needs.eslint.result }}" == "failure" ]]; then
+            echo "::error::One or more linters failed. Please check PR comments for details."
+            exit 1
+          fi
+          echo "All linters passed successfully!"

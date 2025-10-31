@@ -1,0 +1,575 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TASK-{##}",
+ "creation": "2025-03-03 10:49:09.041524",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "task_definition_id",
+  "task_name",
+  "description",
+  "predecessor_tasks",
+  "successor_tasks",
+  "regex_for_transition",
+  "assigned_to",
+  "assignee",
+  "task_type",
+  "tag",
+  "subtask",
+  "status_map",
+  "priority_map",
+  "status_priority_map",
+  "reminder_enabled",
+  "reminder_frequency",
+  "starting_on",
+  "reminder_interval",
+  "reminder_unit",
+  "reminder_total_times",
+  "reminder_times_remaining",
+  "next_remind_at",
+  "branch",
+  "department",
+  "checklist",
+  "column_break_wjsz",
+  "attach_file",
+  "submit_file",
+  "due_date",
+  "status",
+  "priority",
+  "checker",
+  "upload_required",
+  "is_completed",
+  "restrict",
+  "company_id",
+  "recurrence_type_id",
+  "enabled",
+  "has_subtask",
+  "completed_on",
+  "completed_by",
+  "completion_platform",
+  "is_help_ticket",
+  "reopened",
+  "reopened_by",
+  "approved",
+  "approved_on",
+  "last_comment",
+  "delayed_time",
+  "is_delayed",
+  "holiday_behaviour",
+  "attached_form_tab",
+  "attached_form",
+  "attached_docname",
+  "select_next_task_doer",
+  "next_task_assigned_to",
+  "subtask_fields_tab",
+  "is_subtask",
+  "parent_task_instance",
+  "notification_section",
+  "notification_type",
+  "notification_status",
+  "notification_scheduled_for",
+  "notification_sent_on",
+  "skip_notification"
+ ],
+ "fields": [
+  {
+   "fieldname": "task_name",
+   "fieldtype": "Small Text",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "Task Name",
+   "mandatory_depends_on": "eval:doc.task_type == 'Recurring'",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "predecessor_tasks",
+   "fieldtype": "Data",
+   "label": "Predecessor Tasks"
+  },
+  {
+   "fieldname": "successor_tasks",
+   "fieldtype": "Data",
+   "label": "Successor Tasks"
+  },
+  {
+   "fieldname": "regex_for_transition",
+   "fieldtype": "Data",
+   "label": "Regex for transition"
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "label": "Assigned To",
+   "options": "CG User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assignee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assignee",
+   "options": "CG User"
+  },
+  {
+   "fieldname": "task_type",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_standard_filter": 1,
+   "label": "Task Type",
+   "options": "Onetime\nRecurring\nProcess\nProject"
+  },
+  {
+   "fieldname": "submit_file",
+   "fieldtype": "JSON",
+   "label": "Submit File"
+  },
+  {
+   "depends_on": "eval: doc.has_subtask == 1",
+   "fieldname": "subtask",
+   "fieldtype": "Table",
+   "label": "Subtask",
+   "mandatory_depends_on": "eval: doc.has_subtask == 1",
+   "options": "CG Subtask Instance"
+  },
+  {
+   "fieldname": "column_break_wjsz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attach_file",
+   "fieldtype": "JSON",
+   "label": "Attach File"
+  },
+  {
+   "default": "Today",
+   "fieldname": "due_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Due Date"
+  },
+  {
+   "default": "Due Today",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Upcoming\nCompleted\nDue Today\nOverdue\nRejected\nPaused",
+   "reqd": 1
+  },
+  {
+   "default": "Low",
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Priority",
+   "options": "Low\nMedium\nCritical",
+   "reqd": 1
+  },
+  {
+   "fieldname": "checker",
+   "fieldtype": "Link",
+   "label": "Checker",
+   "options": "CG User"
+  },
+  {
+   "default": "0",
+   "fieldname": "upload_required",
+   "fieldtype": "Check",
+   "label": "Upload Required"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_completed",
+   "fieldtype": "Check",
+   "label": "Is Completed"
+  },
+  {
+   "default": "0",
+   "fieldname": "restrict",
+   "fieldtype": "Check",
+   "label": "Restrict Before or After Due Date"
+  },
+  {
+   "fieldname": "company_id",
+   "fieldtype": "Link",
+   "label": "Company ID",
+   "options": "CG Company",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.task_type == 'Recurring'",
+   "fieldname": "recurrence_type_id",
+   "fieldtype": "Table",
+   "label": "Recurrence Type ID",
+   "mandatory_depends_on": "eval:doc.task_type == 'Recurring'",
+   "options": "CG Recurrence Type"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_subtask",
+   "fieldtype": "Check",
+   "label": "Has Subtask"
+  },
+  {
+   "fieldname": "tag",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "Tag",
+   "options": "CG Tags"
+  },
+  {
+   "fieldname": "completed_on",
+   "fieldtype": "Datetime",
+   "label": "Completed On"
+  },
+  {
+   "fieldname": "completed_by",
+   "fieldtype": "Link",
+   "label": "Completed By",
+   "options": "CG User"
+  },
+  {
+   "fieldname": "completion_platform",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "label": "Completion Platform",
+   "options": "\nMobile\nWeb"
+  },
+  {
+   "depends_on": "eval:doc.task_type == 'Recurring'",
+   "fieldname": "task_definition_id",
+   "fieldtype": "Link",
+   "label": "Task Definition ID",
+   "mandatory_depends_on": "eval:doc.task_type == 'Recurring'",
+   "options": "CG Task Definition"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_help_ticket",
+   "fieldtype": "Check",
+   "label": "Is Help Ticket"
+  },
+  {
+   "fieldname": "reopened",
+   "fieldtype": "Int",
+   "label": "Reopened"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "CG Branch"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "CG Department"
+  },
+  {
+   "default": "0",
+   "fieldname": "approved",
+   "fieldtype": "Check",
+   "label": "Approved"
+  },
+  {
+   "fieldname": "approved_on",
+   "fieldtype": "Datetime",
+   "label": "Approved On"
+  },
+  {
+   "fieldname": "status_map",
+   "fieldtype": "Int",
+   "label": "Status Map"
+  },
+  {
+   "fieldname": "priority_map",
+   "fieldtype": "Int",
+   "label": "Priority Map"
+  },
+  {
+   "fieldname": "status_priority_map",
+   "fieldtype": "Data",
+   "label": "Status Priority Map"
+  },
+  {
+   "default": "0",
+   "fieldname": "reminder_enabled",
+   "fieldtype": "Check",
+   "label": "Reminder Enabled"
+  },
+  {
+   "depends_on": "eval:doc.reminder_enabled==1",
+   "fieldname": "reminder_frequency",
+   "fieldtype": "Select",
+   "label": "Reminder Frequency",
+   "mandatory_depends_on": "eval:doc.reminder_enabled==1",
+   "options": "\nDaily\nWeekly\nCustom"
+  },
+  {
+   "depends_on": "eval:doc.reminder_enabled==1",
+   "fieldname": "starting_on",
+   "fieldtype": "Datetime",
+   "label": "Starting On",
+   "mandatory_depends_on": "eval:doc.reminder_enabled==1"
+  },
+  {
+   "depends_on": "eval:doc.reminder_frequency==\"Custom\" && doc.reminder_enabled==1",
+   "fieldname": "reminder_interval",
+   "fieldtype": "Int",
+   "label": "Reminder Interval",
+   "mandatory_depends_on": "eval:doc.reminder_frequency==\"Custom\" && doc.reminder_enabled==1"
+  },
+  {
+   "depends_on": "eval:doc.reminder_frequency==\"Custom\" && doc.reminder_enabled==1",
+   "fieldname": "reminder_unit",
+   "fieldtype": "Select",
+   "label": "Reminder Unit",
+   "mandatory_depends_on": "eval:doc.reminder_frequency==\"Custom\" && doc.reminder_enabled==1",
+   "options": "\nDays\nHours"
+  },
+  {
+   "depends_on": "eval:doc.reminder_enabled==1",
+   "fieldname": "reminder_total_times",
+   "fieldtype": "Int",
+   "label": "Total Reminders"
+  },
+  {
+   "depends_on": "eval:doc.reminder_enabled==1",
+   "fieldname": "reminder_times_remaining",
+   "fieldtype": "Int",
+   "label": "Reminders Remaining"
+  },
+  {
+   "fieldname": "next_remind_at",
+   "fieldtype": "Datetime",
+   "label": "Next Remind At"
+  },
+  {
+   "fieldname": "reopened_by",
+   "fieldtype": "Link",
+   "label": "Reopened By",
+   "options": "CG User"
+  },
+  {
+   "fieldname": "attached_form_tab",
+   "fieldtype": "Tab Break",
+   "label": "Attached Form"
+  },
+  {
+   "fieldname": "attached_form",
+   "fieldtype": "Link",
+   "label": "Attached Form",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "attached_docname",
+   "fieldtype": "Dynamic Link",
+   "label": "Attached Docname",
+   "options": "attached_form"
+  },
+  {
+   "default": "0",
+   "fieldname": "select_next_task_doer",
+   "fieldtype": "Check",
+   "label": "Select Next Task Doer",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.select_next_task_doer",
+   "fieldname": "next_task_assigned_to",
+   "fieldtype": "Link",
+   "label": "Next Task Assigned To",
+   "mandatory_depends_on": "eval:doc.select_next_task_doer",
+   "options": "CG User"
+  },
+  {
+   "fieldname": "last_comment",
+   "fieldtype": "Small Text",
+   "label": "Last Comment"
+  },
+  {
+   "fieldname": "delayed_time",
+   "fieldtype": "Data",
+   "label": "Delayed Time"
+  },
+  {
+   "fieldname": "subtask_fields_tab",
+   "fieldtype": "Tab Break",
+   "label": "Subtask Information"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_subtask",
+   "fieldtype": "Check",
+   "label": "Is Subtask",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.is_subtask == 1",
+   "fieldname": "parent_task_instance",
+   "fieldtype": "Link",
+   "label": "Parent Task Instance",
+   "options": "CG Task Instance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checklist",
+   "fieldtype": "Table",
+   "label": "Task Checklist",
+   "options": "CG Task Checklist Item"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_delayed",
+   "fieldtype": "Check",
+   "label": "Is Delayed"
+  },
+  {
+   "fetch_from": "task_definition_id.holiday_behaviour",
+   "fieldname": "holiday_behaviour",
+   "fieldtype": "Data",
+   "label": "Holiday Behaviour"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "notification_section",
+   "fieldtype": "Section Break",
+   "label": "Notification Tracking"
+  },
+  {
+   "description": "Type of notification to send",
+   "fieldname": "notification_type",
+   "fieldtype": "Select",
+   "label": "Notification Type",
+   "options": "\nCreated\nUpdated\nCompleted\nReopened\nDeleted\nAssigned\nRejected\nPaused\nResumed",
+   "read_only": 1
+  },
+  {
+   "default": "Pending",
+   "fieldname": "notification_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Notification Status",
+   "options": "Pending\nSent\nSkipped\nFailed",
+   "read_only": 1
+  },
+  {
+   "description": "Date and time when notification should be sent",
+   "fieldname": "notification_scheduled_for",
+   "fieldtype": "Datetime",
+   "label": "Notification Scheduled For",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notification_sent_on",
+   "fieldtype": "Datetime",
+   "label": "Notification Sent On",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "skip_notification",
+   "fieldtype": "Check",
+   "label": "Skip Notification",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-27 06:22:52.990231",
+ "modified_by": "sourav@clapgrow.com",
+ "module": "Clapgrow App",
+ "name": "CG Task Instance",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-ADMIN",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-TEAM-LEAD",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "if_owner": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-MEMBER",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-MEMBER",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "status_priority_map",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

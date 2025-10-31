@@ -1,0 +1,24 @@
+# Add 'source' label for frontend changes
+source:
+  - changed-files:
+      - any-glob-to-any-file: "clapgrow/src/**/*.{ts,tsx,css}"
+
+# Add 'backend' label for server changes
+backend:
+  - changed-files:
+      - any-glob-to-any-file: "clapgrow_app/**/*.{json,py}"
+
+# Add 'bug' label if PR mentions fixes/closes
+bug:
+  - title: '(?i)(fixes|closes)'
+  - body: '(?i)(fixes|closes)'
+
+# Add 'feature' label if PR mentions adds/new feature
+feature:
+  - title: '(?i)(adds|new feature)'
+  - body: '(?i)(adds|new feature)'
+
+# Add 'Documentation' label if PR mentions docs
+Documentation:
+  - title: '(?i)docs'
+  - body: '(?i)docs'

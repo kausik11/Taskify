@@ -1,0 +1,32 @@
+name: Manual Merge test to main
+
+on:
+  workflow_dispatch:
+
+jobs:
+  manual-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Merge test → main manually
+        run: |
+          git fetch origin
+          CHANGES=$(git log origin/main..origin/test)
+          if [ -z "$CHANGES" ]; then
+            echo "No new commits to merge."
+            exit 0
+          fi
+
+          PR_EXISTS=$(gh pr list --base main --head test --state open --json number --jq '.[0].number')
+          if [ -z "$PR_EXISTS" ]; then
+            gh pr create --base main --head test --title "Manual PR: test → main" --body "Triggered manually by ${{ github.actor }}"
+            PR_EXISTS=$(gh pr list --base main --head test --state open --json number --jq '.[0].number')
+          fi
+
+          gh pr merge "$PR_EXISTS" --merge
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

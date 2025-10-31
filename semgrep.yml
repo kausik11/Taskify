@@ -1,0 +1,8 @@
+version: 2
+rules:
+  - id: frappe-using-db-sql
+    enabled: false # This line disables the rule entirely
+    message: This rule is disabled in the semgrep configuration
+    languages:
+      - python
+    severity: INFO

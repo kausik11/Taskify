@@ -1,0 +1,4 @@
+Task "{{ doc.name }}" has exceeded Due Date. Please take the necessary action.
+{% if comments %} Last comment: {{ comments[-1].comment }} by {{ comments[-1].by
+}} {% endif %} *Details* • Assignee: {{ doc.assignee }} • Priority: {{
+doc.priority }} • Due Date: {{ doc.due_date }}

@@ -1,0 +1,8 @@
+node_modules/
+build/
+dist/
+clapgrow_app/public/
+clapgrow_app/templates/includes/
+clapgrow_app/public/js/lib/
+postcss.config.js
+tailwind.config.js

@@ -1,0 +1,3 @@
+.ag-menu:has(.date-filters) {
+	overflow-y: unset;
+}

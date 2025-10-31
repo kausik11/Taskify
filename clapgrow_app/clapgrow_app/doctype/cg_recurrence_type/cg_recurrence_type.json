@@ -1,0 +1,102 @@
+{
+  "actions": [],
+  "autoname": "autoincrement",
+  "creation": "2024-08-17 13:30:34.821798",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "frequency",
+    "custom_type",
+    "interval",
+    "week_days",
+    "month_days",
+    "column_break_aopb",
+    "nth_week",
+    "end_date",
+    "exception_date",
+    "amended_from"
+  ],
+  "fields": [
+    {
+      "fieldname": "interval",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Interval"
+    },
+    {
+      "description": "Comma-separated days (e.g., Mon,Tue,Sun)",
+      "fieldname": "week_days",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Week Days"
+    },
+    {
+      "description": "Integer value",
+      "fieldname": "month_days",
+      "fieldtype": "Int",
+      "in_standard_filter": 1,
+      "label": "Month Days"
+    },
+    {
+      "fieldname": "end_date",
+      "fieldtype": "Date",
+      "label": "End Date"
+    },
+    {
+      "fieldname": "exception_date",
+      "fieldtype": "Link",
+      "label": "Exception Date",
+      "options": "CG Holiday"
+    },
+    {
+      "fieldname": "column_break_aopb",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "frequency",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Frequency",
+      "options": "\nDaily\nWeekly\nMonthly\nYearly\nCustom",
+      "reqd": 1
+    },
+    {
+      "fieldname": "custom_type",
+      "fieldtype": "Select",
+      "label": "Custom Type",
+      "options": "\nDaily\nWeekly\nMonthly\nYearly",
+      "depends_on": "eval:doc.frequency == 'Custom'"
+    },
+    {
+      "fieldname": "nth_week",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Nth Week",
+      "options": "1st\n2nd\n3rd\n4th\nLast"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "no_copy": 1,
+      "options": "CG Recurrence Type",
+      "print_hide": 1,
+      "read_only": 1,
+      "search_index": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2025-09-06 19:06:37.813579",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "CG Recurrence Type",
+  "naming_rule": "Autoincrement",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": [],
+  "title_field": "frequency"
+}

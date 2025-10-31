@@ -1,0 +1,41 @@
+pull_request_rules:
+  - name: Auto-close PRs on stable branch
+    conditions:
+      - and:
+          - author!=cgsourav
+          - author!=kkclapgrow
+          - author!=mergify[bot]
+      - base=main
+    actions:
+      close:
+      comment:
+        message: |
+          @{{author}}, thanks for the contribution, but we do not accept pull requests on a stable branch. Please raise PR on an appropriate branch.
+
+  - name: Auto-merge PR to main after successful CI
+    conditions:
+      - check-success=ci/Server
+      - base=main
+    actions:
+      merge:
+        method: merge
+
+  - name: backport to develop
+    conditions:
+      - label="backport develop"
+    actions:
+      backport:
+        branches:
+          - develop
+        assignees:
+          - "{{ author }}"
+
+  - name: backport to main-hotfix
+    conditions:
+      - label="backport main-hotfix"
+    actions:
+      backport:
+        branches:
+          - main-hotfix
+        assignees:
+          - "{{ author }}"

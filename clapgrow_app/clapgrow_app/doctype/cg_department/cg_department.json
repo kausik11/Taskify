@@ -1,0 +1,82 @@
+{
+  "actions": [],
+  "autoname": "format:{department_name}-{company_id}",
+  "creation": "2024-08-17 13:03:28.972428",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["department_name", "company_id"],
+  "fields": [
+    {
+      "fieldname": "department_name",
+      "fieldtype": "Data",
+      "label": "Department Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "company_id",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Company ID",
+      "options": "CG Company",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-04-09 10:19:18.527062",
+  "modified_by": "Administrator",
+  "module": "Clapgrow App",
+  "name": "CG Department",
+  "naming_rule": "Expression",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1,
+      "import": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-ADMIN",
+      "share": 1,
+      "write": 1,
+      "import": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-TEAM-LEAD",
+      "share": 1
+    },
+    {
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "CG-ROLE-MEMBER",
+      "share": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
+}

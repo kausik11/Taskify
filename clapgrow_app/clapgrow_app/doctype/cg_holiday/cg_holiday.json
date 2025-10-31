@@ -1,0 +1,300 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:HOL-{branch_id}-{YYYY}-{#####}",
+ "creation": "2024-08-17 13:04:27.784967",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "holiday_details_section",
+  "holiday_name",
+  "holiday_type",
+  "column_break_1",
+  "branch_id",
+  "is_active",
+  "section_break_date",
+  "is_recurring",
+  "holiday_date",
+  "column_break_2",
+  "is_optional",
+  "color",
+  "section_break_recurring",
+  "recurrence_type",
+  "days_of_week",
+  "column_break_3",
+  "week_occurrence",
+  "recurrence_interval",
+  "section_break_validity",
+  "start_date",
+  "end_date",
+  "column_break_4",
+  "applicable_for",
+  "section_break_details",
+  "description",
+  "column_break_5",
+  "auto_generated",
+  "section_break_applicability",
+  "employees",
+  "section_break_generated",
+  "generated_dates"
+ ],
+ "fields": [
+  {
+   "fieldname": "holiday_details_section",
+   "fieldtype": "Section Break",
+   "label": "Holiday Information"
+  },
+  {
+   "fieldname": "holiday_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Holiday Name",
+   "reqd": 1
+  },
+  {
+   "default": "Public Holiday",
+   "fieldname": "holiday_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Holiday Type",
+   "options": "National Holiday\nPublic Holiday\nCompany Holiday\nWeekly Off\nRegional Holiday\nCustom",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "options": "CG Branch",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "section_break_date",
+   "fieldtype": "Section Break",
+   "label": "Date Configuration"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_recurring",
+   "fieldtype": "Check",
+   "label": "Is Recurring Holiday"
+  },
+  {
+   "depends_on": "eval:!doc.is_recurring",
+   "fieldname": "holiday_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Holiday Date",
+   "mandatory_depends_on": "eval:!doc.is_recurring"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_optional",
+   "fieldtype": "Check",
+   "label": "Is Optional Holiday"
+  },
+  {
+   "default": "#3B82F6",
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "label": "Color"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "fieldname": "section_break_recurring",
+   "fieldtype": "Section Break",
+   "label": "Recurring Pattern"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "fieldname": "recurrence_type",
+   "fieldtype": "Select",
+   "label": "Recurrence Type",
+   "mandatory_depends_on": "eval:doc.is_recurring",
+   "options": "Weekly\nMonthly\nQuarterly\nYearly"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring && (doc.recurrence_type=='Weekly' || doc.recurrence_type=='Monthly')",
+   "description": "Comma-separated (e.g., Mon,Tue,Sat,Sun)",
+   "fieldname": "days_of_week",
+   "fieldtype": "Data",
+   "label": "Days of Week",
+   "mandatory_depends_on": "eval:doc.is_recurring && doc.recurrence_type=='Weekly'"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Every",
+   "depends_on": "eval:doc.recurrence_type=='Monthly'",
+   "fieldname": "week_occurrence",
+   "fieldtype": "Select",
+   "label": "Week Occurrence",
+   "mandatory_depends_on": "eval:doc.recurrence_type=='Monthly'",
+   "options": "Every\n1st\n2nd\n3rd\n4th\nLast"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.is_recurring",
+   "description": "Repeat every N periods (weeks/months/quarters/years)",
+   "fieldname": "recurrence_interval",
+   "fieldtype": "Int",
+   "label": "Interval"
+  },
+  {
+   "fieldname": "section_break_validity",
+   "fieldtype": "Section Break",
+   "label": "Validity Period"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Valid From",
+   "reqd": 1
+  },
+  {
+   "description": "Leave blank for indefinite",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "Valid To"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "All Employees",
+   "fieldname": "applicable_for",
+   "fieldtype": "Select",
+   "label": "Applicable For",
+   "options": "All Employees\nSpecific Employees"
+  },
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Additional Details"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "description": "System generated recurring holiday",
+   "fieldname": "auto_generated",
+   "fieldtype": "Check",
+   "label": "Auto Generated",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.applicable_for != 'All Employees'",
+   "fieldname": "section_break_applicability",
+   "fieldtype": "Section Break",
+   "label": "Applicability"
+  },
+  {
+   "depends_on": "eval:doc.applicable_for == 'Specific Employees'",
+   "fieldname": "employees",
+   "fieldtype": "Table",
+   "label": "Employees",
+   "options": "CG Holiday Employee"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "fieldname": "section_break_generated",
+   "fieldtype": "Section Break",
+   "label": "Generated Holiday Dates"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "fieldname": "generated_dates",
+   "fieldtype": "Table",
+   "label": "Generated Dates",
+   "options": "CG Holiday Generated Date",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2025-08-11 05:52:01.216365",
+ "modified_by": "Administrator",
+ "module": "Clapgrow App",
+ "name": "CG Holiday",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-ADMIN",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-TEAM-LEAD",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CG-ROLE-MEMBER",
+   "share": 1
+  }
+ ],
+ "quick_entry": 1,
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "start_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "holiday_name",
+ "track_changes": 1
+}
