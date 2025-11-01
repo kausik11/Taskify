@@ -200,7 +200,7 @@ jobs:
       # DAST scanning - only on scheduled runs or manual dispatch
       - name: OWASP ZAP Dynamic Scan
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        uses: zaproxy/action-full-scan@v0.12.0
+        uses: zaproxy/action-full-scan@v0.13.0
         with:
           target: "http://test_site:8000"
           rules_file_name: ".zap/rules.tsv"
